@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #F5F5F5;
+  height: 100vh;
+}
+
+button.MuiButton-outlined,
+button.MuiButton-contained {
+  min-width: 130px !important
+}
+
+.center-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: stretch;
+  height: 100vh;
+}
+
+.center-grid h1{
+  text-align: left;
+  margin-top: 20px;
+}
+
+.center-grid .list-right button{
+  margin-top: 40px;
+}
+
+.password-input{
+  margin: 0 !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.Mui-focused .MuiOutlinedInput-notchedOutline,
+.password-input .Mui-focused .MuiOutlinedInput-notchedOutline,
+.MuiTextField-root:hover .MuiOutlinedInput-notchedOutline,
+.MuiFormControl-fullWidth:hover .MuiOutlinedInput-notchedOutline,
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline
+{
+  border-color: #059748 !important;
+}
+
+.MuiTextField-root label, .password-input label{
+  color: #059748 !important;
+}
+
+header {
+  background: #059748;
+  height: 143px;
+  position: relative;
+
+}
+
+header::before {
+  background-color: #F5F6F8;
+  content: "";
+  height: 30px;
+  box-sizing: border-box;
+  width: 100%;
+
+}
+
+.logo img {
+  height: 96px;
+  margin-left: 24px;
+}
+
+.menu {
+  padding: 0 24px;
+  height: 56px;
+}
+
+.menu>div {
+  background-color: white;
+  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
+  height: 56px;
+  margin-top: -4px;
+}
+
+
+
+.menu .MuiList-padding {
+  padding: 0;
+}
+
+.menu ul {
+  margin: 0 10px;
+  display: flex;
+}
+
+.menu ul li {
+  display: inline-flex;
+  max-width: 200px;
+  height: 56px;
+  width: inherit;
+  margin-left: 20px;
+}
+
+.menu ul li>a {
+  height: 100%;
+}
+
+
+.menu ul li>a>div {
+  height: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.menu ul li>a>div+div {
+  padding: 0;
+  color: #9398A4
+}
+
+.menu ul li>div>div+div span {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 14px;
+  color: #9398A4
+}
+
+.menuIcon {
+  min-width: 35px !important;
+}
+
+.menu ul li div.active div span {
+  font-weight: 700 !important;
+  font-size: 14px;
+  color: #9398A4
+}
+
+
+
+.avatar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.avatar>div {
+  margin-right: 150px; 
+  margin-top: 15px;
+}
+
+.avatar .MuiAvatar-root {
+  border: 2px solid white;
+  vertical-align: middle;
+  align-self: center;
+  -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.26);
+  background-color: #059748;
+  background-image: url("../img/avatar-img.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: transparent;
+}
+
+.avatar button{
+position: relative;
+}
+.avatar button::before{
+  content: "Bienvenido";
+  font-weight: bold;
+  position: absolute;
+  font-size: 14px;
+  right: -78px;
+  top: 10px;
+  color: white;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.avatar button::after{
+  content: "Usuario";
+  position: absolute;
+  font-size: 14px;
+  right: -50px;
+  bottom: 12px;
+  color: white;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.container-body {
+  margin: 40px 24px !important;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 30px !important;
+}
+
+h1:before {
+  position: absolute;
+  bottom: 0;
+  content: "";
+  width: 55px;
+  height: 3px;
+  background-color: #F2A700;
+}
+
+.cardHome button {
+  padding: 25px;
+  display: flex;
+  align-content: space-around;
+  justify-content: flex-start;
+  border-radius: 10px;
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root {
+  border-radius: 10px !important;
+}
+
+.cardHome .orange {
+  background-color: #F2A700;
+}
+
+.cardHome button img {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 15px;
+  color: white;
+}
+
+.cardHome button>div {
+  padding: 0 20px;
+  margin: 0;
+}
+
+.cardHome button img,
+.cardHome button>div {
+  display: inline-block;
+}
+
+.cardHome button>div div {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500;
+  color: #3F4254;
+  font-size: 22px;
+  margin: 0;
+  padding: 0;
+  line-height: 33px;
+}
+
+.cardHome button>div p {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 14px;
+  color: #23B6CC;
+}
+
+h3.title-card {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 22px !important;
+  color: #3F4254;
+  margin-bottom: 32px;
+}
+
+.card-page {
+  padding: 20px !important;
+}
+
+.button-group {
+  display: flex;
+  margin-bottom: 30px !important;
+}
+
+.list-left button {
+  margin-right: 10px;
+}
+
+.list-right {
+  justify-content: flex-end !important;
+  display: flex;
+}
+
+.list-right button,
+.list-right a {
+  margin-right: 10px;
+}
+
+.list-right button:last-child{
+  margin-right: 0;
+}
+
+.MuiButton-containedPrimary {
+  background-color: #109D48 !important;
+  color: white;
+  text-transform: none !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.MuiButton-outlinedPrimary {
+  border-color: #109D48 !important;
+  color: #109D48 !important;
+  text-transform: none !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.MuiButton-outlinedPrimary:hover {
+  border-color: #0c6630 !important;
+}
+
+.MuiButton-containedPrimary:hover {
+  background-color: #0c6630 !important;
+}
+
+table {
+  box-shadow: 0 !important;
+}
+
+table thead th {
+  background: #F5F6F8;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 13px;
+  font-weight: bold !important;
+  padding: 8px 16px !important;
+}
+
+table tbody tr td {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 13px;
+  padding: 8px 16px !important;
+}
+
+table tbody tr td .css-1ex1afd-MuiTableCell-root {
+  padding: 0px !important;
+}
+
+.contenido-detalles {
+  display: flex;
+  margin-bottom: 20px !important;
+}
+
+.contenido-detalles label {
+  display: block;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 12px;
+  font-weight: bold !important;
+  padding: 8px 16px !important;
+}
+
+.contenido-detalles span {
+  display: block;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 14px;
+  padding: 8px 16px !important;
+  margin-left: 15px;
+}
+
+.grid > div{
+  display: flex;
+}
+
+.MuiTextField-root{
+    width: 100%;
+}
+
+
+.css-qjjqcc{
+  border-color: #FFF !important;
+  border-radius: 10px;
+}
+
+.css-qjjqcc h2{
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important; 
+  color: #3F4254;
+  margin-bottom: 40px;
+}
+
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root,
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root,
+.css-u4tvz2-MuiFormLabel-root,
+.css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label,
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.css-u4tvz2-MuiFormLabel-root{
+  font-size: 12px;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  margin-bottom: 10px;
+  position: absolute !important;
+  top: -11px;
+}
+
+.css-qfz70r-MuiFormGroup-root{
+  margin-top: 10px;
+}
