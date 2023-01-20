@@ -3,8 +3,9 @@ import { Visibility, VisibilityOff } from '@mui/icons-material/';
 import { Button, FormControl, FormHelperText, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { validateLogin } from '@/utils/validateLogin';
+import { validateLogin, getProfile } from '@/utils/validateLogin';
 import { useAuthStore } from '@/store/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 function LoginForm() {
@@ -12,6 +13,7 @@ function LoginForm() {
   const setToken = useAuthStore(state => state.setToken)
   const setProfile = useAuthStore(state => state.setProfile)
 
+  const navigate = useNavigate()
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -29,8 +31,10 @@ function LoginForm() {
           let res = await validateLogin(values)
           console.log(res)
           if (res != undefined){
-            setToken(res[0].access_token)
-            setProfile(res[1])
+            setToken(res.access_token)
+            const resProfile = await getProfile()
+            setProfile(resProfile.data)
+            navigate('/')
           }
         }}
       >
