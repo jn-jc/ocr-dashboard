@@ -29,7 +29,6 @@ function LoginForm() {
         validationSchema={LoginSchema}
         onSubmit={async values => {
           let res = await validateLogin(values)
-          console.log(res)
           if (res != undefined){
             setToken(res.access_token)
             const resProfile = await getProfile()

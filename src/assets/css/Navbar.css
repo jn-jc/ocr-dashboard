@@ -1,0 +1,18 @@
+.navbar-item:link .navbar-item:visited{
+  text-decoration: none;
+}
+.navbar-item {
+  text-decoration: none;
+  color: #9398A4
+}
+
+.navbar-active {
+  color: #64686f;
+  background-color: rgba(0, 0, 0, 0.085);
+
+}
+
+.navbar-active > div > div > span{
+  color: #64686f;
+  font-weight: 600;
+}

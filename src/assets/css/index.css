@@ -134,13 +134,11 @@ header::before {
   min-width: 35px !important;
 }
 
-.menu ul li div.active div span {
+.active {
   font-weight: 700 !important;
   font-size: 14px;
   color: #9398A4
 }
-
-
 
 .avatar {
   display: flex;
