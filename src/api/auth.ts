@@ -11,7 +11,15 @@ export const loginRequest = async (data: LoginModel) => {
 
   const res = await axios.post('/create-token', formData)
     .then(response => response)
-    .catch(error => error.response)
+    .catch(error => {
+      if (error.response) {
+        return error.response
+      }
+      else {
+        alert(`Type Error: ${error.message}. \nContacte al area de soporte.` )
+        return error.message
+      }
+    })
 
   return res
 }

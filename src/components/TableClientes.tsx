@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { getRecords } from "@/api/data"
 import { useAuthStore } from "@/store/auth"
 import { useNavigate } from "react-router-dom"
+import MUIDataTables from "mui-datatables"
+import { defColumns } from "@/utils/constantsTable"
+
 
 
 export function TableClientes() {
@@ -10,17 +13,16 @@ export function TableClientes() {
 
   const logout = useAuthStore(state => state.logOut)
 
-  const [resgistros, setRegistros] = useState('')
+  const [registros, setRegistros] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const get_api_data = async () => {
       const responseRecords = await getRecords()
       if (responseRecords.status != 401){
-        const json = JSON.stringify(responseRecords)
-        setRegistros(json)
+        console.log(responseRecords)
+        setRegistros(responseRecords)
         setIsLoading(false)
-        console.log(resgistros)
       }
       else{
         alert('Sesión expirada. Vuelva a iniciar sesión')
@@ -41,7 +43,13 @@ export function TableClientes() {
   }
 
   return (
-    <div>{resgistros}</div>
-
+    <>
+      <MUIDataTables
+        title={''}
+        data={registros}
+        columns={defColumns}
+        options={{filterType: 'checkbox'}}
+      />
+    </>
   )
 }

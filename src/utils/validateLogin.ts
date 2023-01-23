@@ -10,6 +10,7 @@ export const validateLogin = async (data: LoginModel) => {
   else if (loginResponse.status == 200) {
     return loginResponse.data
   }
+
 }
 
 export const getProfile = async () => {
