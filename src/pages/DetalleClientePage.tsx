@@ -1,4 +1,8 @@
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { DetalleRegistro } from '@/components/DetalleRegistro'
+
+
+import { DetailProvider } from '@/context/DetailContext'
 
 function DetalleClientePage() {
 
@@ -6,7 +10,9 @@ function DetalleClientePage() {
 
   return (
     <div>
-      Registro # <h2>{params.id_registro}</h2>
+      <DetailProvider>
+        <DetalleRegistro id={params.id_registro} />
+      </DetailProvider>
     </div>
   )
 }

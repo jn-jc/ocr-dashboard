@@ -1,5 +1,7 @@
 import { LoginModel } from "@/models/login_model"
 import { loginRequest, profileRequest } from "@/api/auth"
+import { UpdateRecordModel } from "@/models/updateRecord_model"
+import { updateRecord } from "@/api/data"
 
 export const validateLogin = async (data: LoginModel) => {
 
@@ -17,3 +19,4 @@ export const getProfile = async () => {
   const profileResponse = await profileRequest()
   return profileResponse
 }
+

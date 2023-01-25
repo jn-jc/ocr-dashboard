@@ -1,6 +1,5 @@
-import { Grid, Typography, Card, CardContent, Button } from "@mui/material"
-import { FileDownloadOutlined, FilterAltOutlined } from '@mui/icons-material'
-import { TableClientes } from "@/components/TableClientes"
+import { DataGridRegistros } from "@/components/DataGridRegistros"
+import { Card, CardContent, Grid, Typography } from "@mui/material"
 
 export function AdminClientesPage() {
   return (
@@ -16,23 +15,8 @@ export function AdminClientesPage() {
                 <Typography className='title-card' variant="h3">
                   Listado de Registros
                 </Typography>
-                <Grid item md={12} className="button-group">
-                  <Grid item md={6} className="list-left">
-                    <Button variant="outlined" startIcon={<FileDownloadOutlined />}>
-                      Exportar
-                    </Button>
-                    <Button variant="contained" disableElevation>
-                      Gestión multiple
-                    </Button>
-                  </Grid>
-                  <Grid item md={6} className="list-right">
-                    <Button variant="outlined" startIcon={<FilterAltOutlined />}>
-                      Filtrar
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <TableClientes />
+                <Grid item xs={12} style={{ height: '35em', display: 'flex', width: '99%' }}>
+                  <DataGridRegistros />
                 </Grid>
               </CardContent>
             </Card>

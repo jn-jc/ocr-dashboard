@@ -20,7 +20,7 @@ function App() {
         <Route element={<ProtectedRoute isAllowed={isAuth} />}>
           <Route path='/' element={<HomePage />} />
           <Route path='/gestion-clientes' element={<AdminClientesPage />} />
-          <Route path='/detalle/:id_registro' element={<DetalleClientePage />} />
+          <Route path='/detalle-registro/:id_registro' element={<DetalleClientePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
