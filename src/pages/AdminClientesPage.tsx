@@ -1,4 +1,4 @@
-import { DataGridRegistros } from "@/components/DataGridRegistros"
+import { TableClientes } from "@/components/TableClientes"
 import { Card, CardContent, Grid, Typography } from "@mui/material"
 
 export function AdminClientesPage() {
@@ -15,9 +15,7 @@ export function AdminClientesPage() {
                 <Typography className='title-card' variant="h3">
                   Listado de Registros
                 </Typography>
-                <Grid item xs={12} style={{ height: '35em', display: 'flex', width: '99%' }}>
-                  <DataGridRegistros />
-                </Grid>
+                <TableClientes />
               </CardContent>
             </Card>
           </Grid>

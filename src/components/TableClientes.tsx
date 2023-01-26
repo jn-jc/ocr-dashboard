@@ -1,19 +1,16 @@
 import { getRecords } from "@/api/data"
-import { columns } from "@/lib/dataGrid"
-import { RegistroModel } from "@/models/registro_model"
+import { columns, muiTableTheme, options } from "@/lib/muiDatatable"
 import { useAuthStore } from "@/store/auth"
-import { DataGrid, GridToolbar } from "@mui/x-data-grid"
+import MUIDataTable from "mui-datatables"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import '../assets/css/DataGrid.css'
+import { createTheme, ThemeProvider } from "@mui/material"
 
-
-export const DataGridRegistros = () => {
+export const TableClientes = () => {
 
   const get_api_data = async () => {
     const responseRecords = await getRecords()
     if (responseRecords.status != 401) {
-      console.log(responseRecords)
       setRegistros(responseRecords)
       setIsLoading(false)
     }
@@ -41,18 +38,16 @@ export const DataGridRegistros = () => {
       </div>
     )
   }
-  return (
-    <DataGrid
-      columns={columns}
-      rows={registros}
-      getRowId={(row)=> row.id_registro}
-      disableSelectionOnClick
-      components={{
-        ColumnResizeIcon(props) {
-          return null
-        },
-      }}
-    />
-  )
 
+  return (
+    <ThemeProvider theme={muiTableTheme()}>
+      <MUIDataTable
+        title=''
+        data={registros}
+        columns={columns}
+        options={options}
+
+      />
+    </ThemeProvider>
+  )
 }

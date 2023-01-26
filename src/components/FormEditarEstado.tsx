@@ -1,3 +1,4 @@
+import { updateStateRecord } from "@/api/data"
 import { DetailContext } from "@/context/DetailContext"
 import { EditStateRecordSchema } from "@/schemas/edit_state_record_schema"
 import { useAuthStore } from "@/store/auth"
@@ -17,16 +18,23 @@ export const FormEditarEstado = () => {
     <Formik
       initialValues={{
         id_registro: detalleRegistro.id_registro,
-        id_estado: ''
+        id_estado: 0
       }}
       validationSchema={EditStateRecordSchema}
       onSubmit={async values => {
+        values.id_estado = Number(values.id_estado)
         setIsLoading(true)
-        console.log(values)
-        setTimeout(() => {
-          console.log(values)
-          setIsLoading(false)
-        }, 3000)
+        const updateResponse = await updateStateRecord(values)
+        if (updateResponse.status != 401) {
+          alert(updateResponse)
+          window.location.reload()
+        }
+        else {
+          alert('Sesión expirada. Vuelva a iniciar sesión')
+          logout()
+          navigate('/login')
+        }
+        setIsLoading(false)
 
 
       }}>
