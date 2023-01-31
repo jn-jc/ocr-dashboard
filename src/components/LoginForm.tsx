@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { validateLogin, getProfile } from '@/utils/validateLogin';
 import { useAuthStore } from '@/store/auth';
 import { useNavigate } from 'react-router-dom';
+import { LoadingButton } from './LoadingButton';
 
 
 function LoginForm() {
@@ -16,6 +17,7 @@ function LoginForm() {
   const navigate = useNavigate()
 
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
 
@@ -28,6 +30,7 @@ function LoginForm() {
         }}
         validationSchema={LoginSchema}
         onSubmit={async values => {
+          setIsLoading(true)
           let res = await validateLogin(values)
           if (res != undefined){
             setToken(res.access_token)
@@ -35,6 +38,7 @@ function LoginForm() {
             setProfile(resProfile.data)
             navigate('/')
           }
+          setIsLoading(false)
         }}
       >
         {({ values, handleSubmit, handleChange, errors, touched }) => (
@@ -78,9 +82,7 @@ function LoginForm() {
             </Grid>
             <Grid item md={12} className="button-group">
               <Grid item md={12} className="list-right">
-                <Button variant="contained" disableElevation type='submit'>
-                  Iniciar sesión
-                </Button>
+                <LoadingButton isLoading={isLoading} labelButton={'Iniciar Sesión'}/>
               </Grid>
             </Grid>
           </form>

@@ -2,10 +2,11 @@ import { updateRecord } from "@/api/data"
 import { DetailContext } from "@/context/DetailContext"
 import { EditRecordSchema } from "@/schemas/edit_record_schema"
 import { useAuthStore } from "@/store/auth"
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material"
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 import { Formik } from "formik"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { LoadingButton } from "./LoadingButton"
 
 
 export const FormEditarRegistro = () => {
@@ -13,27 +14,31 @@ export const FormEditarRegistro = () => {
 
   const logout = useAuthStore(state => state.logOut)
   const { detalleRegistro } = useContext(DetailContext)
+  const [isLoading, setIsLoading] = useState(false)
   return (
     <Formik
       initialValues={{
         id_registro: detalleRegistro.id_registro,
         tipo_doc: '',
         programa: '',
-        num_documento: ''
+        num_documento: '',
+        image_path: detalleRegistro.image_data.path_archivo
       }}
       validationSchema={EditRecordSchema}
       onSubmit={async values => {
+        setIsLoading(true)
         values.num_documento = values.num_documento.toString()
         const responseUpdate = await updateRecord(values)
         if (responseUpdate.status != 401) {
-          console.log(responseUpdate)
           alert(responseUpdate.data)
           window.location.reload()
+          setIsLoading(false)
         }
         else {
           alert('Sesión expirada. Vuelva a iniciar sesión')
           logout()
           navigate('/login')
+          setIsLoading(false)
         }
       }} >
       {({ values, handleSubmit, handleChange, errors, touched }) => (
@@ -87,9 +92,7 @@ export const FormEditarRegistro = () => {
                 <Button variant="outlined">
                   Cancelar
                 </Button>
-                <Button type="submit" variant="contained" disableElevation>
-                  Guardar
-                </Button>
+                <LoadingButton isLoading={isLoading} labelButton={'Guardar'}/>
               </Grid>
             </Grid>
           </Grid>
