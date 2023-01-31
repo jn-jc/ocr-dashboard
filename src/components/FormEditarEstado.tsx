@@ -12,6 +12,7 @@ export const FormEditarEstado = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const logout = useAuthStore(state => state.logOut)
+  // @ts-ignore
   const { detalleRegistro } = useContext(DetailContext)
 
   return (

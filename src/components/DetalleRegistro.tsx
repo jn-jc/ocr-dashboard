@@ -1,30 +1,42 @@
-import { getDetailRecord } from "@/api/data"
+import { getDetailRecord, getImageBase64 } from "@/api/data"
 import { DetailContext } from "@/context/DetailContext"
 import { useAuthStore } from "@/store/auth"
 import { validateDocType } from "@/utils/validateDataTable"
-import { Button, Card, CardContent, Grid, Typography, Link } from "@mui/material"
+import { Button, Card, CardContent, Grid, Typography, Link, CircularProgress } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
 import { Link as LinkRouter, useNavigate } from "react-router-dom"
 import { ModalGestion } from "./ModalGestion"
 import { ModalRegistro } from "./ModalRegistro"
-import { image64 } from "@/utils/constimage"
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 
 
 export const DetalleRegistro = ({ id }: any) => {
 
-
+  // @ts-ignore
   const { setDetalleRegistro, detalleRegistro } = useContext(DetailContext)
 
   const navigate = useNavigate()
   const logout = useAuthStore(state => state.logOut)
 
   const [isLoading, setIsLoading] = useState(true)
+  const [imageLoading, setImageLoading] = useState(false)
 
-  const handleImageClick = (img64: string) => {
-    const win = window.open()
-    win?.document.write(`<img style="height:100vh" src=${img64} />`)
+
+  const handleImageClick = async () => {
+    setImageLoading(true)
+    const imageResponse = await getImageBase64(detalleRegistro.image_data.path_archivo)
+    console.log(imageResponse)
+    if (!imageResponse) {
+      alert('Ocurrion un error al cargar la imagen, por favor contacte al area de soporte')
+      setImageLoading(false)
+    }
+    else {
+      const imageBase64 = `data:image/jpeg;base64,${imageResponse}`
+      const win = window.open()
+      win?.document.write(`<img style="height:100vh" src=${imageBase64} />`)
+      setImageLoading(false)
+    }
   }
 
 
@@ -117,11 +129,11 @@ export const DetalleRegistro = ({ id }: any) => {
                     <label>Estado</label>
                     <span>{detalleRegistro?.id_estado}</span>
                   </Grid>
-                  <Grid item xs={2}>
-                    <label>Documento asociado </label>
-                    <Link style={{cursor:'pointer', fontFamily: 'Open Sans',padding: '8px 16px',marginLeft:'15px' , fontSize:'14px'}} underline="always" onClick={() => handleImageClick(image64)}>
-                      {detalleRegistro?.image_data.nombre_archivo} <OpenInNewIcon fontSize='inherit'/>
-                    </Link>
+                  <Grid item xs={2.3}>
+                    <label>Documento asociado </label>{!imageLoading ?
+                      <Link style={{ cursor: 'pointer', fontFamily: 'Open Sans', padding: '8px 16px', marginLeft: '15px', fontSize: '14px' }} underline="always" onClick={() => handleImageClick()}>
+                        {detalleRegistro?.image_data.nombre_archivo} <OpenInNewIcon fontSize='inherit' />
+                      </Link> : <CircularProgress size={30} color="success" />}
                   </Grid>
                 </Grid>
 

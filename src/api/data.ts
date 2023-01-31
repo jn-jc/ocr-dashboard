@@ -36,3 +36,17 @@ export const updateStateRecord = async (data: UpdateStateModel) => {
   return res
 
 }
+
+export const getImageBase64 = async (path: string) => {
+  const res = await axios.get('/imagen/get-image', {
+    params: {
+      path_image: path
+    }
+  })
+    .then(response => response.data)
+    .catch(error => {
+      console.log(error)
+      return false
+    })
+  return res
+}

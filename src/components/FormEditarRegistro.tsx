@@ -13,6 +13,7 @@ export const FormEditarRegistro = () => {
   const navigate = useNavigate()
 
   const logout = useAuthStore(state => state.logOut)
+  // @ts-ignore
   const { detalleRegistro } = useContext(DetailContext)
   const [isLoading, setIsLoading] = useState(false)
   return (
