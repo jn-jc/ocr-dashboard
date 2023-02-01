@@ -85,14 +85,26 @@ export const columns: MUIDataTableColumnDef[] = [
       customBodyRender: (values, tableMeta, updateValue) => {
         return <MenuTable id={tableMeta.rowData[0]} />
       },
-    }
-
+      download: false
+    },
+    
   }
 ]
 
 export const options: MUIDataTableOptions = {
   filter: true,
   selectableRows: 'none',
+  downloadOptions: {
+    filterOptions:{
+      useDisplayedColumnsOnly: true,
+      useDisplayedRowsOnly: true
+    }
+  },
+  sortOrder:{
+    name: 'id_registro',
+    direction: 'desc'
+
+  }
 }
 
 export const muiTableTheme = () => createTheme({

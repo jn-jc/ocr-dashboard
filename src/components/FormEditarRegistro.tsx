@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { LoadingButton } from "./LoadingButton"
 
 
-export const FormEditarRegistro = () => {
+export const FormEditarRegistro = ({handleClose}:any) => {
   const navigate = useNavigate()
 
   const logout = useAuthStore(state => state.logOut)
@@ -90,7 +90,7 @@ export const FormEditarRegistro = () => {
             </Grid>
             <Grid item md={12} className="button-group">
               <Grid item md={12} className="list-right">
-                <Button variant="outlined">
+                <Button onClick={handleClose} variant="outlined">
                   Cancelar
                 </Button>
                 <LoadingButton isLoading={isLoading} labelButton={'Guardar'}/>

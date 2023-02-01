@@ -7,7 +7,7 @@ import { Formik } from "formik"
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-export const FormEditarEstado = () => {
+export const FormEditarEstado = ({handleClose}:any) => {
   const navigate = useNavigate()
 
   const [isLoading, setIsLoading] = useState(false)
@@ -15,11 +15,24 @@ export const FormEditarEstado = () => {
   // @ts-ignore
   const { detalleRegistro } = useContext(DetailContext)
 
+  if (detalleRegistro.id_estado == 'No Coincide'){
+    detalleRegistro.id_estado = 2
+  }
+  else if (detalleRegistro.id_estado == 'Error'){
+    detalleRegistro.id_estado = 3
+  }
+  else if (detalleRegistro.id_estado == 'Revisado'){
+    detalleRegistro.id_estado = 4
+  }
+  else if (detalleRegistro.id_estado == 'Cerrado'){
+    detalleRegistro.id_estado = 6
+  }
+
   return (
     <Formik
       initialValues={{
         id_registro: detalleRegistro.id_registro,
-        id_estado: 0
+        id_estado: detalleRegistro.id_estado
       }}
       validationSchema={EditStateRecordSchema}
       onSubmit={async values => {
@@ -42,7 +55,7 @@ export const FormEditarEstado = () => {
       {({ values, handleSubmit, handleChange }) => (
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2} item xs={"auto"} className='grid'>
-            <Grid item xs={4}>
+            <Grid item xs={5}>
               <FormControl fullWidth>
                 <FormLabel id="row-radio-buttons-group-label">Nuevo estado:</FormLabel>
                 <RadioGroup
@@ -52,17 +65,19 @@ export const FormEditarEstado = () => {
                   value={values.id_estado}
                   onChange={handleChange}
                 >
-                  <FormControlLabel value={4} control={<Radio />} label="Revisado" />
-                  <FormControlLabel value={3} control={<Radio />} label="Error" />
+                  <FormControlLabel disabled={detalleRegistro.id_estado == 2 ? false : true} value={4} control={<Radio />} label="Revisado" />
+                  <FormControlLabel disabled={detalleRegistro.id_estado == 2 ? false : true} value={3} control={<Radio />} label="Error" />
+                  <FormControlLabel disabled={detalleRegistro.id_estado == 4 || detalleRegistro.id_estado == 3 ? false : true} value={6} control={<Radio />} label="Cerrado" />
+
                 </RadioGroup>
               </FormControl>
             </Grid>
             <Grid item md={12} className="button-group">
               <Grid item md={12} className="list-right">
-                {isLoading ? <CircularProgress /> : <><Button variant="outlined">
+                {isLoading ? <CircularProgress /> : <><Button onClick={handleClose} variant="outlined">
                   Cancelar
                 </Button>
-                  <Button type="submit" variant="contained" disableElevation>
+                  <Button disabled={detalleRegistro.id_estado == 6 ? true : false} type="submit" variant="contained" disableElevation>
                     Guardar
                   </Button></>}
               </Grid>

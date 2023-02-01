@@ -28,7 +28,7 @@ export const DetalleRegistro = ({ id }: any) => {
     const imageResponse = await getImageBase64(detalleRegistro.image_data.path_archivo)
     console.log(imageResponse)
     if (!imageResponse) {
-      alert('Ocurrion un error al cargar la imagen, por favor contacte al area de soporte')
+      alert('Ocurrio un error al cargar la imagen, por favor contacte al area de soporte')
       setImageLoading(false)
     }
     else {
@@ -142,8 +142,8 @@ export const DetalleRegistro = ({ id }: any) => {
                     <Button variant="outlined" component={LinkRouter} to="/gestion-clientes">
                       Volver
                     </Button>
-                    {detalleRegistro?.id_estado != 'Coincide' ? <><ModalGestion />
-                      <ModalRegistro /> </> : undefined}
+                    {detalleRegistro?.id_estado == 'Coincide' || detalleRegistro?.id_estado == 'Cerrado' ? undefined : <><ModalGestion />
+                      <ModalRegistro /> </> }
                   </Grid>
                 </Grid>
               </CardContent>

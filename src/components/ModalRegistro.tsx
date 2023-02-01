@@ -43,7 +43,7 @@ export function ModalRegistro() {
                             Editar Registro
                         </Typography>
                         <Typography id="transition-modal-description">
-                            <FormEditarRegistro/>
+                            <FormEditarRegistro handleClose={handleClose}/>
                         </Typography>
                     </Box>
                 </Fade>

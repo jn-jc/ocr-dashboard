@@ -43,7 +43,7 @@ export const ModalGestion = () => {
                 Selecciona el nuevo estado del registro, segun corresponda
               </Typography>
               <Grid style={{marginTop: '3em'}} >
-                <FormEditarEstado />
+                <FormEditarEstado handleClose={handleClose} />
               </Grid>
             </Typography>
           </Box>

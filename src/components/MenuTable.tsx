@@ -46,7 +46,7 @@ export const MenuTable = ({id}:any) => {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose} component={Link} to={`/detalle-registro/${id}`}>
+          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose} component={Link} target={'_blank'} to={`/detalle-registro/${id}`}>
             {option}
           </MenuItem>
         ))}
