@@ -17,3 +17,8 @@ export interface RegistroModel {
     id_usuario: number
   }
 }
+
+export interface UpdateSignature {
+  id_registro: number
+  firma: number
+}

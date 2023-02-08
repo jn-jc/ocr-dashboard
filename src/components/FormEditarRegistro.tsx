@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { LoadingButton } from "./LoadingButton"
 
 
-export const FormEditarRegistro = ({handleClose}:any) => {
+export const FormEditarRegistro = ({ handleClose }: any) => {
   const navigate = useNavigate()
 
   const logout = useAuthStore(state => state.logOut)
@@ -21,7 +21,7 @@ export const FormEditarRegistro = ({handleClose}:any) => {
       initialValues={{
         id_registro: detalleRegistro.id_registro,
         tipo_doc: '',
-        programa: '',
+        // programa: '',
         num_documento: '',
         image_path: detalleRegistro.image_data.path_archivo
       }}
@@ -46,12 +46,12 @@ export const FormEditarRegistro = ({handleClose}:any) => {
         <form onSubmit={handleSubmit}>
           <Grid container spacing={4} item xs={12} className="grid">
             <Grid container spacing={2} item xs={12}>
-              <Grid item xs={4}>
-                <TextField disabled id="id" name="id_registro" label="ID" variant="outlined" defaultValue={detalleRegistro.id_registro} />
-              </Grid>
             </Grid>
             <Grid container spacing={2} item xs={12}>
               <Grid item xs={4}>
+                <TextField disabled id="id" name="id_registro" label="ID" variant="outlined" defaultValue={detalleRegistro.id_registro} />
+              </Grid>
+              {/* <Grid item xs={4}>
                 <FormControl fullWidth>
                   <InputLabel id="plan-cliente-label">Plan *</InputLabel>
                   <Select
@@ -66,7 +66,7 @@ export const FormEditarRegistro = ({handleClose}:any) => {
                     <MenuItem value={'CCV'}>Club Cruz Verde</MenuItem>
                   </Select>
                 </FormControl>
-              </Grid>
+              </Grid> */}
               <Grid item xs={4}>
                 <FormControl fullWidth>
                   <InputLabel id="tipo-documento-label">Tipo documento *</InputLabel>
@@ -93,7 +93,7 @@ export const FormEditarRegistro = ({handleClose}:any) => {
                 <Button onClick={handleClose} variant="outlined">
                   Cancelar
                 </Button>
-                <LoadingButton isLoading={isLoading} labelButton={'Guardar'}/>
+                <LoadingButton isLoading={isLoading} labelButton={'Guardar'} />
               </Grid>
             </Grid>
           </Grid>

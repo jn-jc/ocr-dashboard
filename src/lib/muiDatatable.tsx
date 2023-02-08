@@ -52,7 +52,7 @@ export const columns: MUIDataTableColumnDef[] = [
     label: 'Firma',
     options: {
       customBodyRender: (values, tableMeta, updateValue) => {
-        return tableMeta.rowData[9] != 'Coincide' ? 'No' : 'Sí'
+        return tableMeta.rowData[6] != 1 ? 'No' : 'Sí'
       },
     }
 
@@ -66,11 +66,6 @@ export const columns: MUIDataTableColumnDef[] = [
       },
     }
 
-
-  },
-  {
-    name: 'id_plan',
-    label: 'Plan',
 
   },
   {

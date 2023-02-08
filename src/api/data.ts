@@ -1,4 +1,5 @@
 import axios from '@/lib/axios'
+import { UpdateSignature } from '@/models/registro_model'
 import { UpdateRecordModel } from '@/models/updateRecord_model'
 import { UpdateStateModel } from '@/models/updateState_model'
 
@@ -49,4 +50,14 @@ export const getImageBase64 = async (path: string) => {
       return false
     })
   return res
+}
+
+export const updateSignature = async (data: UpdateSignature) => {
+
+  const res = await axios.put('/registros/edit-firma', data)
+    .then(response => response.data)
+    .catch(error => error.response)
+
+  return res
+
 }

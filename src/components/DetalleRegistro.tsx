@@ -8,8 +8,7 @@ import { Link as LinkRouter, useNavigate } from "react-router-dom"
 import { ModalGestion } from "./ModalGestion"
 import { ModalRegistro } from "./ModalRegistro"
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-
-
+import { ModalFirma } from "./ModalFirma"
 
 export const DetalleRegistro = ({ id }: any) => {
 
@@ -85,13 +84,15 @@ export const DetalleRegistro = ({ id }: any) => {
                     <label>Fecha envío</label>
                     <span>{detalleRegistro?.fecha_registro.split('T')[0]}</span>
                   </Grid>
-                  <Grid item xs={2}>
-                    <label>Fecha inscripción</label>
-                    <span>{detalleRegistro?.fecha_inscripcion}</span>
-                  </Grid>
-                  <Grid item xs={2}>
+                  {/* <Grid item xs={2}>
                     <label>Plan</label>
                     <span>{detalleRegistro?.id_plan}</span>
+                  </Grid> */}
+                </Grid>
+                <Grid item xs={12} className="contenido-detalles">
+                  <Grid item xs={2}>
+                    <label>Fecha inscripción</label>
+                    <span>{detalleRegistro?.fecha_inscripcion ? new Date(detalleRegistro?.fecha_inscripcion * 1).toLocaleDateString("en-GB") : ''}</span>
                   </Grid>
                   <Grid item xs={2}>
                     <label>Tipo documento</label>
@@ -101,25 +102,20 @@ export const DetalleRegistro = ({ id }: any) => {
                     <label>No. documento</label>
                     <span>{detalleRegistro?.no_doc_cliente}</span>
                   </Grid>
-                </Grid>
-                <Grid item xs={12} className="contenido-detalles">
-                  <Grid item xs={4}>
+                  <Grid item xs={3}>
                     <label>Nombres</label>
                     <span>{detalleRegistro?.nombre_cliente != undefined ? `${detalleRegistro?.nombre_cliente} ${detalleRegistro?.apellido_cliente}` : ''}</span>
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid item xs={2}>
                     <label>Correo electrónico </label>
                     <span>{detalleRegistro?.email_cliente}</span>
                   </Grid>
-
+                </Grid>
+                <Grid item xs={12} className="contenido-detalles">
                   <Grid item xs={2}>
                     <label>Firma</label>
-                    <span>{detalleRegistro?.id_estado != 'Coincide' ? 'No' : 'Sí'}</span>
+                    <span>{detalleRegistro?.firma != 1 ? 'No' : 'Sí'}</span>
                   </Grid>
-
-                </Grid>
-
-                <Grid item xs={12} className="contenido-detalles">
                   <Grid item xs={2}>
                     <label>Tienda</label>
                     <span>{detalleRegistro?.image_data.id_usuario}</span>
@@ -139,11 +135,12 @@ export const DetalleRegistro = ({ id }: any) => {
 
                 <Grid item md={12} className="button-group">
                   <Grid item md={12} className="list-right">
-                    <Button variant="outlined" component={LinkRouter} to="/gestion-clientes">
+                    <Button variant="outlined" onClick={() => window.close()}>
                       Volver
                     </Button>
+                    {detalleRegistro?.id_estado != 'Coincide' ? undefined : <ModalFirma />}
                     {detalleRegistro?.id_estado == 'Coincide' || detalleRegistro?.id_estado == 'Cerrado' ? undefined : <><ModalGestion />
-                      <ModalRegistro /> </> }
+                      <ModalRegistro /> </>}
                   </Grid>
                 </Grid>
               </CardContent>
